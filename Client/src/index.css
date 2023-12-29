@@ -1,0 +1,25 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+/*
+@layer components {
+	.max-w-screen-2x1 {
+		max-width: 1920px; /* Adjust the max-width based on your design */
+/* } */
+/* } */
+
+/* Your custom styles */
+.section-container {
+	@apply max-w-screen-2xl container mx-auto xl:px-24 px-4;
+}
+
+.subTitle {
+	@apply text-tomato uppercase tracking-wide font-medium text-lg;
+}
+
+.title {
+	@apply font-lora text-2xl md:text-4xl font-bold my-2 md:leading-snug leading-snug;
+}
+header {
+	z-index: 1001 !important;
+}
