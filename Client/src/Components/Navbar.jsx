@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import foodieSvg from "/foody.svg";
-// import logo from "../../public/pics.png";
+import logo from "../../public/pics.png";
 import { BiSolidPhoneCall } from "react-icons/bi";
 const Navbar = () => {
 	const [isSticky, setSticky] = useState(false);
@@ -21,7 +21,7 @@ const Navbar = () => {
 		};
 	}, []);
 	const svgStyle = {
-		width: "110px",
+		width: "115px",
 		height: "auto",
 		// margin: "-5px", // Add margin
 		// padding: "-5px", // Add padding
@@ -113,7 +113,7 @@ const Navbar = () => {
 						<img src={foodieSvg} alt="Foodie Logo" style={svgStyle} />
 					</a>
 					{/* <a href="/">
-						<img src={logo} style={{ width: "109px", height: "43px" }} alt="" />
+						<img src={logo} style={{ width: "109px", height: "41px" }} alt="" />
 					</a> */}
 				</div>
 				<div className="navbar-center hidden lg:flex">

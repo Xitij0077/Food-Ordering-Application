@@ -9,6 +9,11 @@
 /* } */
 
 /* Your custom styles */
+
+header {
+	z-index: 1001 !important;
+}
+
 .section-container {
 	@apply max-w-screen-2xl container mx-auto xl:px-24 px-4;
 }
@@ -20,6 +25,7 @@
 .title {
 	@apply font-lora text-2xl md:text-4xl font-bold my-2 md:leading-snug leading-snug;
 }
-header {
-	z-index: 1001 !important;
+
+.heartStar {
+	border-radius: 0px 12px 0px 12px;
 }

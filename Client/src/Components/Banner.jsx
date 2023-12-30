@@ -1,4 +1,6 @@
 import React from "react";
+// import { BiSolidDish } from "react-icons/bi";
+import { BiDish } from "react-icons/bi";
 
 const Banner = () => {
 	return (
@@ -21,27 +23,32 @@ const Banner = () => {
 										type="radio"
 										name="rating-2"
 										className="mask mask-star-2 bg-yellow-500"
+										readOnly
 									/>
 									<input
 										type="radio"
 										name="rating-2"
 										className="mask mask-star-2 bg-yellow-500"
 										checked
+										readOnly
 									/>
 									<input
 										type="radio"
 										name="rating-2"
 										className="mask mask-star-2 bg-yellow-500"
+										readOnly
 									/>
 									<input
 										type="radio"
 										name="rating-2"
 										className="mask mask-star-2 bg-yellow-500"
+										readOnly
 									/>
 									<input
 										type="radio"
 										name="rating-2"
 										className="mask mask-star-2 bg-yellow-500"
+										readOnly
 									/>
 								</div>
 								<p className="text-red-700">$18.00</p>
@@ -60,27 +67,32 @@ const Banner = () => {
 										type="radio"
 										name="rating-2"
 										className="mask mask-star-2 bg-yellow-500"
+										readOnly
 									/>
 									<input
 										type="radio"
 										name="rating-2"
 										className="mask mask-star-2 bg-yellow-500"
+										readOnly
 										checked
 									/>
 									<input
 										type="radio"
 										name="rating-2"
 										className="mask mask-star-2 bg-yellow-500"
+										readOnly
 									/>
 									<input
 										type="radio"
 										name="rating-2"
 										className="mask mask-star-2 bg-yellow-500"
+										readOnly
 									/>
 									<input
 										type="radio"
 										name="rating-2"
 										className="mask mask-star-2 bg-yellow-500"
+										readOnly
 									/>
 								</div>
 								<p className="text-red-700">$18.00</p>
@@ -92,8 +104,9 @@ const Banner = () => {
 				{/* texts */}
 				<div className="md:w-1/2 space-y-7 px-4">
 					<h2 className="md:text-5xl text-4xl font-bold md:leading-snug leading-snug font-lora">
-						<span className="text-orange font-lora">Precision </span>in every
-						bite, Excellence in every
+						Precision in every
+						<span className="text-orange font-lora"> Bite</span>, Excellence in
+						every
 						<span className="text-orange font-lora"> Order</span>.
 					</h2>
 
@@ -101,8 +114,9 @@ const Banner = () => {
 						Elevating your dining experience with a fusion of precision-crafted
 						flavors and orders that surpass perfection.
 					</p>
-					<button className="btn bg-orange px-8 py-3 font-semibold text-white rounded-full">
-						Order Now
+					<button className="btn bg-orange px-6 py-2 font-semibold text-white rounded-full align-middle">
+						<BiDish size={25} />
+						Explore
 					</button>
 				</div>
 			</div>

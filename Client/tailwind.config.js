@@ -8,7 +8,10 @@ export default {
 				tomato: "#FF6868",
 				secondary: "#555",
 				primaryBG: "#fcfcfc",
-				// olive: "#FF5403",
+				green: "#39DB4A",
+				pink: "#FA7070",
+				coral: "#dbaa39",
+				blue: "#a9cfc3",
 			},
 
 			fontFamily: {
