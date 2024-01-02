@@ -1,6 +1,8 @@
 import React from "react";
 // import { BiSolidDish } from "react-icons/bi";
-import { BiDish } from "react-icons/bi";
+// import { BiDish } from "react-icons/bi";
+
+import explore from "../../public/svg/explore.svg";
 
 const Banner = () => {
 	return (
@@ -115,7 +117,7 @@ const Banner = () => {
 						flavors and orders that surpass perfection.
 					</p>
 					<button className="btn bg-orange px-6 py-2 font-semibold text-white rounded-full align-middle">
-						<BiDish size={25} />
+						<img src={explore} alt="Foodie Logo" width="30" height="30" />
 						Explore
 					</button>
 				</div>

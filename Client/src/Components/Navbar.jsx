@@ -35,14 +35,16 @@ const Navbar = () => {
 	const navItems = (
 		<>
 			<li style={navItemStyle}>
-				<a href="/">Home</a>
+				<a className="text-orange" href="/">
+					Home
+				</a>
 			</li>
 			<li tabIndex={0} style={navItemStyle}>
 				<details>
 					<summary>Menu</summary>
 					<ul className="p-2" style={navItemStyle}>
 						<li>
-							<a>All</a>
+							<a href="/menu">All</a>
 						</li>
 						<li>
 							<a>Salad</a>
