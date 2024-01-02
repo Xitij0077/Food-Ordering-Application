@@ -14,9 +14,9 @@ const Cards = ({ item }) => {
 	};
 
 	return (
-		<div className="card w-96 mx-7 bg-base-100 shadow-md my-4 relative">
+		<div className="card shadow-md mr-5 md:my-5 relative">
 			<div
-				className={`rating gap-1 absolute right-0 top-0 p-4 heartStar bg-pink ${
+				className={`rating gap-1 absolute right-0 top-0 p-4 heartStar bg-orange ${
 					isHeartFilled ? "text-white" : "text-white"
 				}`}
 				onClick={handleHeartClick}

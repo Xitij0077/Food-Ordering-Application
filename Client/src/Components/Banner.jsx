@@ -8,7 +8,7 @@ const Banner = () => {
 			<div className="py-24  flex flex-col md:flex-row-reverse justify-between items-center gap-8">
 				{/* Images */}
 				<div className="md:w-1/2">
-					<img className="lg:mx-12" src="images1/home/banner1.png" alt="" />
+					<img className="lg:mx-12" src="images1/home/poster.png" alt="" />
 					<div className="flex flex-col md:flex-row items-center justify-around lg:-mt-9 sm:-mt-14 gap-5">
 						<div className="flex bg-white py-2 px-3 rounded-2xl items-center gap-3 shadow-md w-64">
 							<img

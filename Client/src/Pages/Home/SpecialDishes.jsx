@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import Cards from "./Cards";
+import Cards from "../../Components/Cards";
 import { RiArrowLeftSFill, RiArrowRightSFill } from "react-icons/ri";
 
 const NextArrow = (props) => {
@@ -38,7 +38,7 @@ const SpecialDishes = () => {
 		fetch("/menu.json")
 			.then((res) => res.json())
 			.then((data) => {
-				const specials = data.filter((item) => item.category === "popular");
+				const specials = data.filter((item) => item.category === "salad");
 				// console.log(specials);
 				setRecipes(specials);
 			});
@@ -47,7 +47,7 @@ const SpecialDishes = () => {
 	// SETTING
 	const settings = {
 		dots: true,
-		infinite: false,
+		infinite: true,
 		speed: 500,
 		slidesToShow: 3,
 		slidesToScroll: 3,
@@ -98,7 +98,7 @@ const SpecialDishes = () => {
 				</button>
 				<button
 					onClick={() => slider?.current?.slickNext()}
-					className="btn p-2 rounded-full ml-5 bg-blue"
+					className="btn p-2 rounded-full ml-5 bg-orange"
 				>
 					<RiArrowRightSFill className="w-8 h-8 p-1" />
 				</button>
@@ -106,7 +106,7 @@ const SpecialDishes = () => {
 			<Slider
 				ref={slider}
 				{...settings}
-				className="overflow-hidden mt-10 space-x-5 "
+				className="overflow-hidden mt-10 space-x-4 "
 			>
 				{recipes.map((item, i) => (
 					<Cards key={i} item={item} />
