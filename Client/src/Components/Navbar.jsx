@@ -1,10 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import foodieSvg from "/foody.svg";
 import logo from "../../public/pics.png";
-import { BiSolidPhoneCall } from "react-icons/bi";
+// import { BiSolidPhoneCall } from "react-icons/bi";
+import { FaUser } from "react-icons/fa";
+import Modal from "./Modal";
+import { AuthContext } from "../Context/AuthProvider";
+import { TbLogout } from "react-icons/tb";
+
 const Navbar = () => {
 	const [isSticky, setSticky] = useState(false);
 
+	const { user } = useContext(AuthContext);
+
+	console.log(user);
 	// Handle Scroll function
 	useEffect(() => {
 		const handleScroll = () => {
@@ -172,20 +180,48 @@ const Navbar = () => {
 					</a> */}
 					{/* btn */}
 					{/* Responsive size for mobile devices */}
-					<a
-						style={{ ...navItemStyle, fontSize: "0.75rem" }}
-						className="btn bg-orange px-4 rounded-2xl   text-white  items-center gap-2 lg:hidden"
-					>
-						<BiSolidPhoneCall size={20} />
-					</a>
-					{/* Standard size for larger screens */}
-					<a
-						style={navItemStyle}
-						className="btn bg-orange rounded-full px-6 text-white  items-center gap-2 hidden lg:flex"
-					>
-						<BiSolidPhoneCall />
-						Contact
-					</a>
+					{user ? (
+						<>
+							<button
+								style={{ ...navItemStyle, fontSize: "0.75rem" }}
+								className="btn bg-orange px-4 rounded-2xl   text-white  items-center gap-2 lg:hidden"
+							>
+								<TbLogout size={20} />
+							</button>
+							{/* Standard size for larger screens */}
+							<button
+								style={navItemStyle}
+								className="btn bg-orange rounded-full px-6 text-white  items-center gap-2 hidden lg:flex"
+							>
+								<TbLogout />
+								Logout
+							</button>
+						</>
+					) : (
+						<>
+							<button
+								onClick={() =>
+									document.getElementById("my_modal_5").showModal()
+								}
+								style={{ ...navItemStyle, fontSize: "0.75rem" }}
+								className="btn bg-orange px-4 rounded-2xl   text-white  items-center gap-2 lg:hidden"
+							>
+								<FaUser size={20} />
+							</button>
+							{/* Standard size for larger screens */}
+							<button
+								onClick={() =>
+									document.getElementById("my_modal_5").showModal()
+								}
+								style={navItemStyle}
+								className="btn bg-orange rounded-full px-6 text-white  items-center gap-2 hidden lg:flex"
+							>
+								<FaUser />
+								Login
+							</button>
+						</>
+					)}
+					<Modal />
 				</div>
 			</div>
 		</header>

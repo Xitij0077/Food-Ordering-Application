@@ -1,0 +1,82 @@
+[
+	{
+		"_id": "652c155b2c4774f05c36eeaa",
+		"name": "Greek salad Caesar",
+		"recipe": "Greek salad Caesar salad Chicken salad Greek cuisine Spinach salad, Greek Salad, leaf Vegetable.",
+		"image": "./images1/recipes/salad/img4.png",
+		"category": "salad",
+		"price": 14.7
+	},
+
+	{
+		"_id": "652c155b2c4774f05c36eeab",
+		"name": "Haddock",
+		"recipe": "Chargrilled fresh tuna steak (served medium rare) on classic Ni??oise salad with French beans.",
+		"image": "./images1/recipes/salad/img5.png",
+		"category": "salad",
+		"price": 14.7
+	},
+
+	{
+		"_id": "652c155b2c4774f05c36eeac",
+		"name": "Haddock",
+		"recipe": "Chargrilled fresh tuna steak (served medium rare) on classic Ni??oise salad with French beans.",
+		"image": "./images1/recipes/salad/img6.png",
+		"category": "salad",
+		"price": 14.7
+	},
+
+	{
+		"_id": "652c155b2c4774f05c36eead",
+		"name": "Haddock",
+		"recipe": "Chargrilled fresh tuna steak (served medium rare) on classic Ni??oise salad with French beans.",
+		"image": "./images1/recipes/salad/img7.png",
+		"category": "salad",
+		"price": 14.7
+	},
+
+	{
+		"_id": "652c155b2c4774f05c36eeae",
+		"name": "Haddock",
+		"recipe": "Chargrilled fresh tuna steak (served medium rare) on classic Ni??oise salad with French beans.",
+		"image": "./images1/recipes/salad/img8.png",
+		"category": "salad",
+		"price": 14.7
+	},
+
+	{
+		"_id": "652c155b2c4774f05c36eeaf",
+		"name": "Haddock",
+		"recipe": "Chargrilled fresh tuna steak (served medium rare) on classic Ni??oise salad with French beans.",
+		"image": "./images1/recipes/salad/img9.png",
+		"category": "salad",
+		"price": 14.7
+	},
+
+	{
+		"_id": "652c155b2c4774f05c36eeag",
+		"name": "Haddock",
+		"recipe": "Chargrilled fresh tuna steak (served medium rare) on classic Ni??oise salad with French beans.",
+		"image": "./images1/recipes/salad/img10.png",
+		"category": "salad",
+		"price": 14.7
+	},
+
+	{
+		"_id": "652c155b2c4774f05c36eeah",
+		"name": "Haddock",
+		"recipe": "Chargrilled fresh tuna steak (served medium rare) on classic Ni??oise salad with French beans.",
+		"image": "./images1/recipes/salad/img11.png",
+		"category": "salad",
+		"price": 14.7
+	},
+
+	{
+		"_id": "652c155b2c4774f05c36eeai",
+		"name": "Haddock",
+		"recipe": "Chargrilled fresh tuna steak (served medium rare) on classic Ni??oise salad with French beans.",
+		"image": "./images1/recipes/salad/img12.png",
+		"category": "salad",
+		"price": 14.7
+	}
+]

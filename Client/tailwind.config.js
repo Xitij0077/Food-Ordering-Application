@@ -12,6 +12,7 @@ export default {
 				pink: "#FA7070",
 				coral: "#dbaa39",
 				blue: "#a9cfc3",
+				faBlue: "#1877F2",
 			},
 
 			fontFamily: {
