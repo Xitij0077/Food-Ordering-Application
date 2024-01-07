@@ -6,6 +6,7 @@ import { FaUser } from "react-icons/fa";
 import Modal from "./Modal";
 import { AuthContext } from "../Context/AuthProvider";
 import { TbLogout } from "react-icons/tb";
+import Profile from "./Profile";
 
 const Navbar = () => {
 	const [isSticky, setSticky] = useState(false);
@@ -181,22 +182,7 @@ const Navbar = () => {
 					{/* btn */}
 					{/* Responsive size for mobile devices */}
 					{user ? (
-						<>
-							<button
-								style={{ ...navItemStyle, fontSize: "0.75rem" }}
-								className="btn bg-orange px-4 rounded-2xl   text-white  items-center gap-2 lg:hidden"
-							>
-								<TbLogout size={20} />
-							</button>
-							{/* Standard size for larger screens */}
-							<button
-								style={navItemStyle}
-								className="btn bg-orange rounded-full px-6 text-white  items-center gap-2 hidden lg:flex"
-							>
-								<TbLogout />
-								Logout
-							</button>
-						</>
+						<Profile user={user} />
 					) : (
 						<>
 							<button
@@ -228,4 +214,24 @@ const Navbar = () => {
 	);
 };
 
+{
+	/* <button
+								style={{ ...navItemStyle, fontSize: "0.75rem" }}
+								className="btn bg-orange px-4 rounded-2xl   text-white  items-center gap-2 lg:hidden"
+							>
+								<TbLogout size={20} />
+							</button> */
+}
+{
+	/* Standard size for larger screens */
+}
+{
+	/* <button
+								style={navItemStyle}
+								className="btn bg-orange rounded-full px-6 text-white  items-center gap-2 hidden lg:flex"
+							>
+								<TbLogout />
+								Logout
+							</button> */
+}
 export default Navbar;

@@ -57,9 +57,7 @@ const Modal = () => {
 						className="card-body"
 						method="dialog"
 					>
-						<h3 className="font-bold  font-quicksand  text-center text-2xl">
-							Login
-						</h3>
+						<h3 className=" ">Login</h3>
 
 						{/* Email */}
 						<div className="form-control">

@@ -3,6 +3,7 @@ import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home";
 import Menu from "../Pages/Home/Order/Menu";
 import SignUp from "../Components/SignUp";
+import UpdateProfile from "../Pages/Home/Dashboard/UpdateProfile";
 
 const router = createBrowserRouter([
 	{
@@ -16,6 +17,11 @@ const router = createBrowserRouter([
 			{
 				path: "/menu",
 				element: <Menu />,
+			},
+
+			{
+				path: "/update-profile",
+				element: <UpdateProfile />,
 			},
 		],
 	},

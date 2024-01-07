@@ -35,3 +35,19 @@ header {
 	text-underline-offset: 5px;
 	color: orangered;
 }
+
+.drawer-content {
+	max-width: 100%; /* Set to your desired maximum width */
+	overflow-x: hidden; /* Hide horizontal overflow */
+}
+/* Add this to your styles */
+.drawer-side {
+	max-width: 100%; /* Set to your desired maximum width */
+	overflow-x: hidden; /* Hide horizontal overflow */
+}
+/* Add this to your styles */
+.drawer-content,
+.drawer-side {
+	width: 100%; /* Set to your desired width */
+	max-width: 100%; /* Set to your desired maximum width */
+}
