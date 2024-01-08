@@ -44,6 +44,7 @@ const Modal = () => {
 			.then((result) => {
 				const user = result.user;
 				alert("Login Successfully");
+				document.getElementById("my_modal_5").close();
 				navigate(from, { replace: true });
 			})
 			.catch((error) => console.log(error));
