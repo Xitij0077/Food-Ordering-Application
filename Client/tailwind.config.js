@@ -13,6 +13,7 @@ export default {
 				coral: "#dbaa39",
 				blue: "#a9cfc3",
 				faBlue: "#1877F2",
+				red: "#ff0000",
 			},
 
 			fontFamily: {

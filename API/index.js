@@ -56,6 +56,14 @@ async function run() {
 			res.send(result);
 		});
 
+		// GET CARTS USING EMAIL
+
+		app.get("/carts", async (req, res) => {
+			const email = req.query.email;
+			const filter = { email: email };
+			const result = await cartCollections.find(filter).toArray();
+			res.send(result);
+		});
 		await client.db("admin").command({ ping: 1 });
 		console.log("You successfully connected to MongoDB!");
 	} finally {

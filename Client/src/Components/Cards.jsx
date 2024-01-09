@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { IoIosHeart } from "react-icons/io";
 import { IoIosHeartEmpty } from "react-icons/io";
 // import { FaShoppingBag } from "react-icons/fa";
 import { TbPaperBag } from "react-icons/tb";
 import { AuthContext } from "../Context/AuthProvider";
+import Swal from "sweetalert2";
 
 const Cards = ({ item }) => {
 	const { name, image, price, recipe, _id } = item;
@@ -13,6 +14,8 @@ const Cards = ({ item }) => {
 	const { user } = useContext(AuthContext);
 	// console.log(user);
 
+	const navigate = useNavigate();
+	const location = useLocation();
 	const handleHeartClick = () => {
 		setIsHeartFilled(!isHeartFilled);
 	};
@@ -38,8 +41,31 @@ const Cards = ({ item }) => {
 			})
 				.then((res) => res.json())
 				.then((data) => {
-					console.log(data);
+					// console.log(data);
+					if (data.insertedId) {
+						Swal.fire({
+							position: "top-end",
+							icon: "success",
+							title: "Added To Cart",
+							showConfirmButton: false,
+							timer: 1500,
+						});
+					}
 				});
+		} else {
+			Swal.fire({
+				title: "Please Login?",
+				text: "You are not allowed to Proceed without Login",
+				icon: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#3085d6",
+				cancelButtonColor: "#d33",
+				confirmButtonText: "Sign Up",
+			}).then((result) => {
+				if (result.isConfirmed) {
+					navigate("/signup", { state: { from: location } });
+				}
+			});
 		}
 	};
 	return (
