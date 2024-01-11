@@ -39,7 +39,7 @@ const Footer = () => {
 					<a className="link link-hover">Reservation</a>
 				</nav>
 				<nav>
-					<header className="footer-title text-[#FF5403]">CONTACT US</header>
+					<header className="footer-title text-orange">CONTACT US</header>
 					<a className="link link-hover">example@gmail.com</a>
 					<a className="link link-hover">Privacy policy</a>
 					<a className="link link-hover">Social Media</a>

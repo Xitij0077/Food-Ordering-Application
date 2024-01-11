@@ -1,11 +1,86 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 // import explore from "../../public/svg/explore.svg";
 import useCart from "./../../../Hooks/useCart";
 import { FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../../Context/AuthProvider";
 
 const CartPage = () => {
 	const [cart, refetch] = useCart();
+	const { user } = useContext(AuthContext);
+	const [cartItems, setCartItems] = useState([]);
+
+	// CALCULATE PRICE
+	const calculatePrice = (item) => {
+		return item.price * item.quantity;
+	};
+
+	//INCREASE QUANTITY HANDLE
+
+	const handleIncrease = (item) => {
+		// console.log(item._id);
+		fetch(`http://localhost:3000/carts/${item._id}`, {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json; charset=utf-8",
+			},
+			body: JSON.stringify({ quantity: item.quantity + 1 }),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				const updatedCart = cartItems.map((cartItem) => {
+					if (cartItem.id === item.id) {
+						return {
+							...cartItem,
+							quantity: cartItem.quantity + 1,
+						};
+					}
+					return cartItem;
+				});
+				refetch();
+				setCartItems(updatedCart);
+			});
+		refetch();
+	};
+
+	//DECREASE QUANTITY HANDLE
+
+	const handleDecrease = (item) => {
+		if (item.quantity > 1) {
+			fetch(`http://localhost:3000/carts/${item._id}`, {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json; charset=utf-8",
+				},
+				body: JSON.stringify({ quantity: item.quantity - 1 }),
+			})
+				.then((res) => res.json())
+				.then((data) => {
+					const updatedCart = cartItems.map((cartItem) => {
+						if (cartItem.id === item.id) {
+							return {
+								...cartItem,
+								quantity: cartItem.quantity - 1,
+							};
+						}
+						return cartItem;
+					});
+					refetch();
+					setCartItems(updatedCart);
+				});
+			refetch();
+		} else {
+			alert("Item can't be less then 1 ");
+		}
+	};
+
+	// CALCULATE TOTAL PRICE
+
+	const cartSubTotal = cart.reduce((total, item) => {
+		return total + calculatePrice(item);
+	}, 0);
+
+	const orderTotal = cartSubTotal;
 
 	// HANDLE DELETE
 
@@ -20,18 +95,27 @@ const CartPage = () => {
 			confirmButtonText: "Yes, delete it!",
 		}).then((result) => {
 			if (result.isConfirmed) {
-				Swal.fire({
-					title: "Deleted!",
-					text: "Your file has been deleted.",
-					icon: "success",
-				});
+				fetch(`http://localhost:3000/carts/${item._id}`, {
+					method: "DELETE",
+				})
+					.then((res) => res.json())
+					.then((data) => {
+						if (data.deletedCount > 0) {
+							refetch();
+							Swal.fire({
+								title: "Deleted",
+								text: "Your Item has been deleted",
+								icon: "success",
+							});
+						}
+					});
 			}
 		});
 	};
 	return (
 		<div className="section-container bg-gradient-to-r from-[#FAFAFA] from-0% to-[#FCFCFC] to-100%">
 			{/* BANNER */}
-			<div className="flex items-center justify-center">
+			<div className="flex  items-center justify-center">
 				<img
 					className="lg:mx-auto mt-20 w-48 h-38"
 					src="images1/home/poster.png"
@@ -80,9 +164,32 @@ const CartPage = () => {
 											</div>
 										</div>
 									</td>
-									<td className="font-semibold">{item.name}</td>
-									<td>{item.quantity}</td>
-									<td className="font-semibold">{item.price}</td>
+									<td className="font-medium">{item.name}</td>
+									<td>
+										<button
+											className="btn btn-xs"
+											onClick={() => handleDecrease(item)}
+										>
+											-
+										</button>
+										<input
+											className="w-10 mx-2 text-center overflow-hidden appearance-none"
+											type="number"
+											value={item.quantity}
+											onChange={() => {
+												console.log(item.quantity);
+											}}
+										/>
+										<button
+											onClick={() => handleIncrease(item)}
+											className="btn btn-xs"
+										>
+											+
+										</button>
+									</td>
+									<td className="font-semibold">
+										${calculatePrice(item).toFixed(2)}
+									</td>
 									<th>
 										<button
 											onClick={() => handleDelete(item)}
@@ -95,6 +202,29 @@ const CartPage = () => {
 							))}
 						</tbody>
 					</table>
+				</div>
+			</div>
+
+			{/* {CHECKOUT SECTION} */}
+			<div className="my-12 flex flex-col md:flex-row justify-between items-start">
+				<div className="md:w-1/2 space-y-3">
+					<h3 className="font-semibold text-orange">Customer Details</h3>
+					<p>Name: {user.displayName}</p>
+					<p>Email: {user.email}</p>
+					<p>User_Id : {user.uid}</p>
+				</div>
+				<div className="md:w-1/2 space-y-3">
+					<h3 className="font-semibold text-orange">Shopping Details</h3>
+					<p>Total Items: {cart.length}</p>
+					<p>
+						Total Price:{" "}
+						<span className="text-green font-bold">
+							${orderTotal.toFixed(2)}
+						</span>
+					</p>
+					<button className="btn bg-orange text-white ">
+						Proceed Checkout
+					</button>
 				</div>
 			</div>
 		</div>
