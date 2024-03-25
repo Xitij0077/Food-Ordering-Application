@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import avatar from "../../public/svg/avatar.svg";
 import { AuthContext } from "../Context/AuthProvider";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 const Profile = ({ user }) => {
 	const { logOut } = useContext(AuthContext);
 	// REDIRECTING TO HOME PAGE OR SPECIFIC SPACE
@@ -65,11 +65,17 @@ const Profile = ({ user }) => {
 							<a href="/update-profile">Profile</a>
 						</li>
 						<li>
-							<a>Order</a>
+							<a href="/order">Order</a>
 						</li>
+
 						<li>
 							<a>Setting</a>
 						</li>
+
+						<li>
+							<Link to="/dashboard">Dashboard</Link>
+						</li>
+
 						<li>
 							<a onClick={handleLogout}>Logout</a>
 						</li>

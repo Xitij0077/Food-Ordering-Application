@@ -58,7 +58,9 @@ const Modal = () => {
 						className="card-body"
 						method="dialog"
 					>
-						<h3 className=" ">Login</h3>
+						<h3 className="font-bold  font-quicksand  text-center text-2xl">
+							Login
+						</h3>
 
 						{/* Email */}
 						<div className="form-control">
@@ -128,7 +130,7 @@ const Modal = () => {
 					{/* { SIGN IN THROUGH SOCIAL MEDIA} */}
 					<div className="text-center space-x-3 mb-5">
 						<button
-							className="btn btn-circle hover:bg-red-600 hover:text-white"
+							className="btn btn-circle hover:bg-red hover:text-white"
 							onClick={handleLogin}
 						>
 							<FaGoogle fontSize={20} />

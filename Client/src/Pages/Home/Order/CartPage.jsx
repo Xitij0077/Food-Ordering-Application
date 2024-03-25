@@ -1,9 +1,10 @@
 import React, { useContext, useState } from "react";
-// import explore from "../../public/svg/explore.svg";
-import useCart from "./../../../Hooks/useCart";
+import useCart from "../../../Hooks/useCart";
+import { Link } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../Context/AuthProvider";
+import axios from "axios";
 
 const CartPage = () => {
 	const [cart, refetch] = useCart();
@@ -95,19 +96,16 @@ const CartPage = () => {
 			confirmButtonText: "Yes, delete it!",
 		}).then((result) => {
 			if (result.isConfirmed) {
-				fetch(`http://localhost:3000/carts/${item._id}`, {
-					method: "DELETE",
-				})
-					.then((res) => res.json())
-					.then((data) => {
-						if (data.deletedCount > 0) {
+				axios
+					.delete(`http://localhost:3000/carts/${item._id}`)
+					.then((response) => {
+						if (response) {
 							refetch();
-							Swal.fire({
-								title: "Deleted",
-								text: "Your Item has been deleted",
-								icon: "success",
-							});
+							Swal.fire("Deleted!", "Your file has been deleted.", "success");
 						}
+					})
+					.catch((error) => {
+						console.error(error);
 					});
 			}
 		});
@@ -133,100 +131,115 @@ const CartPage = () => {
 			</div>
 
 			{/* TABLE */}
-			<div>
-				<div className="overflow-x-auto">
-					<table className="table">
-						{/* head */}
-						<thead className="bg-orange  text-white rounded-sm">
-							<tr>
-								<th>#</th>
-								<th>Item</th>
-								<th>Item Name</th>
-								<th>Quantity</th>
-								<th>Price</th>
-								<th>Action</th>
-							</tr>
-						</thead>
-						<tbody>
-							{/* row 1 */}
-							{cart.map((item, index) => (
-								<tr key={index}>
-									<td>{index + 1}</td>
-									<td>
-										<div className="flex items-center gap-3">
-											<div className="avatar">
-												<div className="mask mask-squircle w-12 h-12">
-													<img
-														src={item.image}
-														alt="Avatar Tailwind CSS Component"
-													/>
+			{cart.length > 0 ? (
+				<div>
+					<div className="">
+						<div className="overflow-x-auto">
+							<table className="table">
+								{/* head */}
+								<thead className="bg-orange  text-white rounded-sm">
+									<tr>
+										<th>#</th>
+										<th>Item</th>
+										<th>Item Name</th>
+										<th>Quantity</th>
+										<th>Price</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									{/* row 1 */}
+									{cart.map((item, index) => (
+										<tr key={index}>
+											<td>{index + 1}</td>
+											<td>
+												<div className="flex items-center gap-3">
+													<div className="avatar">
+														<div className="mask mask-squircle w-12 h-12">
+															<img
+																src={item.image}
+																alt="Avatar Tailwind CSS Component"
+															/>
+														</div>
+													</div>
 												</div>
-											</div>
-										</div>
-									</td>
-									<td className="font-medium">{item.name}</td>
-									<td>
-										<button
-											className="btn btn-xs"
-											onClick={() => handleDecrease(item)}
-										>
-											-
-										</button>
-										<input
-											className="w-10 mx-2 text-center overflow-hidden appearance-none"
-											type="number"
-											value={item.quantity}
-											onChange={() => {
-												console.log(item.quantity);
-											}}
-										/>
-										<button
-											onClick={() => handleIncrease(item)}
-											className="btn btn-xs"
-										>
-											+
-										</button>
-									</td>
-									<td className="font-semibold">
-										${calculatePrice(item).toFixed(2)}
-									</td>
-									<th>
-										<button
-											onClick={() => handleDelete(item)}
-											className="btn btn-ghost text-red btn-xs"
-										>
-											<FaTrash />
-										</button>
-									</th>
-								</tr>
-							))}
-						</tbody>
-					</table>
-				</div>
-			</div>
+											</td>
+											<td className="font-medium">{item.name}</td>
+											<td>
+												<button
+													className="btn btn-xs"
+													onClick={() => handleDecrease(item)}
+												>
+													-
+												</button>
+												<input
+													className="w-10 mx-2 text-center overflow-hidden appearance-none"
+													type="number"
+													value={item.quantity}
+													onChange={() => {
+														console.log(item.quantity);
+													}}
+												/>
+												<button
+													onClick={() => handleIncrease(item)}
+													className="btn btn-xs"
+												>
+													+
+												</button>
+											</td>
+											<td className="font-semibold">
+												${calculatePrice(item).toFixed(2)}
+											</td>
+											<td>
+												<button
+													onClick={() => handleDelete(item)}
+													className="btn btn-ghost text-red btn-xs"
+												>
+													<FaTrash />
+												</button>
+											</td>
+										</tr>
+									))}
+								</tbody>
+							</table>
+						</div>
+					</div>
 
-			{/* {CHECKOUT SECTION} */}
-			<div className="my-12 flex flex-col md:flex-row justify-between items-start">
-				<div className="md:w-1/2 space-y-3">
-					<h3 className="font-semibold text-orange">Customer Details</h3>
-					<p>Name: {user.displayName}</p>
-					<p>Email: {user.email}</p>
-					<p>User_Id : {user.uid}</p>
+					{/* {CHECKOUT SECTION} */}
+					<div className="my-12 flex flex-col md:flex-row justify-between items-start">
+						<div className="md:w-1/2 space-y-3">
+							<h3 className="font-semibold text-orange">Customer Details</h3>
+							<p>Name: {user?.displayName || "None"}</p>
+							<p>Email: {user?.email}</p>
+							<p>
+								User_id: <span className="text-sm">{user?.uid}</span>
+							</p>
+						</div>
+						<div className="md:w-1/2 space-y-3">
+							<h3 className="font-semibold text-orange">Shopping Details</h3>
+							<p>Total Items: {cart.length}</p>
+							<p>
+								Total Price:{" "}
+								<span className="text-green font-bold">
+									${orderTotal.toFixed(2)}
+								</span>
+							</p>
+							<button className="btn bg-orange text-white ">
+								Proceed Checkout
+							</button>
+						</div>
+					</div>
 				</div>
-				<div className="md:w-1/2 space-y-3">
-					<h3 className="font-semibold text-orange">Shopping Details</h3>
-					<p>Total Items: {cart.length}</p>
-					<p>
-						Total Price:{" "}
-						<span className="text-green font-bold">
-							${orderTotal.toFixed(2)}
-						</span>
-					</p>
-					<button className="btn bg-orange text-white ">
-						Proceed Checkout
-					</button>
+			) : (
+				<div className="text-center mt-20">
+					<p>Cart is empty. Please add products.</p>
+					<Link to="/menu">
+						<button className="btn bg-green text-white mt-3">
+							Back to Menu
+						</button>
+					</Link>
 				</div>
-			</div>
+			)}
 		</div>
 	);
 };

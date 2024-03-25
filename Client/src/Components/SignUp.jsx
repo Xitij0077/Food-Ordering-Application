@@ -117,7 +117,7 @@ const SignUp = () => {
 
 				{/* { SIGN IN THROUGH SOCIAL MEDIA} */}
 				<div className="text-center space-x-3 mb-5">
-					<button className="btn btn-circle hover:bg-red-600 hover:text-white">
+					<button className="btn btn-circle hover:bg-red hover:text-white">
 						<FaGoogle fontSize={20} />
 					</button>
 					<button className="btn btn-circle hover:bg-faBlue hover:text-white">

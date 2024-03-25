@@ -7,23 +7,27 @@ import { IoIosHeartEmpty } from "react-icons/io";
 import { TbPaperBag } from "react-icons/tb";
 import { AuthContext } from "../Context/AuthProvider";
 import Swal from "sweetalert2";
+import useCart from "../Hooks/useCart";
+import axios from "axios";
 
 const Cards = ({ item }) => {
 	const { name, image, price, recipe, _id } = item;
-	const [isHeartFilled, setIsHeartFilled] = useState(false);
-	const { user } = useContext(AuthContext);
-	// console.log(user);
 
+	const { user } = useContext(AuthContext);
+	const [cart, refetch] = useCart();
 	const navigate = useNavigate();
 	const location = useLocation();
+	// console.log(item)
+	const [isHeartFilled, setIsHeartFilled] = useState(false);
+
 	const handleHeartClick = () => {
 		setIsHeartFilled(!isHeartFilled);
 	};
 
-	// ADD TO CART
+	// add to cart handler
 	const handleAddToCart = (item) => {
-		// console.log("Button is Click", item);
-		if (user && user?.email) {
+		// console.log(item);
+		if (user && user.email) {
 			const cartItem = {
 				menuItemId: _id,
 				name,
@@ -33,41 +37,48 @@ const Cards = ({ item }) => {
 				email: user.email,
 			};
 
-			// SEND DATA TO BACKEND
-			fetch("http://localhost:3000/carts", {
-				method: "POST",
-				headers: { "content-Type": "application/json" },
-				body: JSON.stringify(cartItem),
-			})
-				.then((res) => res.json())
-				.then((data) => {
-					// console.log(data);
-					if (data.insertedId) {
+			axios
+				.post("http://localhost:3000/carts", cartItem)
+				.then((response) => {
+					console.log(response);
+					if (response) {
+						refetch(); // refetch cart
 						Swal.fire({
-							position: "top-end",
+							position: "center",
 							icon: "success",
-							title: "Added To Cart",
+							title: "Food added on the cart.",
 							showConfirmButton: false,
 							timer: 1500,
 						});
 					}
+				})
+				.catch((error) => {
+					console.log(error.response.data.message);
+					const errorMessage = error.response.data.message;
+					Swal.fire({
+						position: "center",
+						icon: "warning",
+						title: `${errorMessage}`,
+						showConfirmButton: false,
+						timer: 1500,
+					});
 				});
 		} else {
 			Swal.fire({
-				title: "Please Login?",
-				text: "You are not allowed to Proceed without Login",
+				title: "Please login to order the food",
 				icon: "warning",
 				showCancelButton: true,
 				confirmButtonColor: "#3085d6",
 				cancelButtonColor: "#d33",
-				confirmButtonText: "Sign Up",
+				confirmButtonText: "Login now!",
 			}).then((result) => {
 				if (result.isConfirmed) {
-					navigate("/signup", { state: { from: location } });
+					navigate("/login", { state: { from: location } });
 				}
 			});
 		}
 	};
+
 	return (
 		<div className="card shadow-md mr-5 md:my-5 relative">
 			<div
